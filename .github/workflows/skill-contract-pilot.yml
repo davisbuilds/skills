@@ -45,7 +45,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -92,14 +92,20 @@ jobs:
           fi
 
       - name: Check skill version bumps
+        # Pass event fields through env rather than interpolating ${{ ... }} into
+        # the run block: a branch name is attacker-influenced on PRs, so template
+        # expansion here is a code-injection vector (zizmor template-injection).
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          EVENT_BEFORE: ${{ github.event.before }}
         run: |
           . .venv/bin/activate
           if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            base_ref="${{ github.event.pull_request.base.ref }}"
+            base_ref="$BASE_REF"
             git fetch --no-tags origin "+refs/heads/${base_ref}:refs/remotes/origin/${base_ref}"
             base="origin/${base_ref}"
           else
-            base="${{ github.event.before }}"
+            base="$EVENT_BEFORE"
           fi
           python3 skills/skill-evals/scripts/check_skill_versions.py --base "$base" --no-untracked
 
