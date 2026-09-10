@@ -21,7 +21,8 @@ Do this, in order:
 2. Install Python deps from the hash-pinned lockfile:
    `python3 -m pip install --require-hashes -r requirements.lock` (currently just
    PyYAML). No env vars or secrets are required for the core repo — only the
-   optional gpt-imagen / gemini-imagen skills need OPENAI_API_KEY / GEMINI_API_KEY,
+   optional atlas-imagen / gpt-imagen / gemini-imagen skills need
+   ATLASCLOUD_API_KEY / OPENAI_API_KEY / GEMINI_API_KEY,
    and only if I use them.
 
 3. Verify WITHOUT any secrets: run the skill-contract validator —
@@ -85,6 +86,7 @@ Some skills bundle optional dependencies:
 
 | Skill | Extra packages | Env vars |
 |-------|----------------|----------|
+| `skills/atlas-imagen/` | None (Python standard library only) | `ATLASCLOUD_API_KEY` |
 | `skills/gpt-imagen/` | `openai>=1.0.0`, `Pillow>=10.0.0` | `OPENAI_API_KEY` |
 | `skills/gemini-imagen/` | `google-genai>=1.0.0`, `Pillow>=10.0.0` | `GEMINI_API_KEY` |
 | `skills/design-md/` | `npx` on PATH; pulls `@google/design.md@0.1.1` on first invocation | — |

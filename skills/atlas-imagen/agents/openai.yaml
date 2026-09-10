@@ -1,0 +1,5 @@
+# AUTO-GENERATED from SKILL.md frontmatter — do not edit
+interface:
+  display_name: "Atlas Imagen"
+  short_description: "Generate images through Atlas Cloud with live model-schema"
+  default_prompt: "Use $atlas-imagen for this task."

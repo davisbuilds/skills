@@ -14,6 +14,12 @@
       "version": "1.0.0"
     },
     {
+      "name": "atlas-imagen",
+      "description": "Generate images through Atlas Cloud with live model-schema validation and bounded result polling. Use when the user asks for text-to-image assets with Atlas Cloud or has ATLASCLOUD_API_KEY configured.",
+      "path": "skills/atlas-imagen",
+      "version": "1.0.0"
+    },
+    {
       "name": "audit-skill",
       "description": "Security audit for agent skills \u2014 prompt-injection and exfiltration scanning with an A\u2013F trust score. Use when reviewing a skill for security, auditing a skill before installation, checking for prompt injection, or when the user says 'audit skill', 'check skill security', 'trust score', 'is this skill safe'. On-demand via /audit-skill.",
       "path": "skills/audit-skill",
